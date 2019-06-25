@@ -1,0 +1,40 @@
+<%= form_tag songs_path, method: "POST" do |f| %>
+<% if @song.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+    <ul>
+    <% @song.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field <%= ' field_with errors' if @song.errors[:title].any? %>">
+    <%= label_tag "song[title]", "Title" %>
+    <%= text_field_tag "song[title]" %>
+</div>
+
+<div class="field <%= ' field_with errors' if @song.errors[:released].any? %>">
+    <%= label_tag "song[released]" %>
+    <%= check_box_tag "song[released]" %>
+</div>
+
+<div class="field <%= ' field_with errors' if @song.errors[:release_year].any? %>">
+    <%= label_tag "song[release_year]" %>
+    <%= text_field_tag "song[release_year]" %>
+</div>
+
+<div class="field <%= ' field_with errors' if @song.errors[:artist_name].any? %>">
+    <%= label_tag "song[artist_name]" %>
+    <%= text_field_tag "song[artist_name]" %>
+</div>
+
+<div class="field <%= ' field_with errors' if @song.errors[:genre].any? %>">
+    <%= label_tag "song[genre]"%>
+    <%= text_field_tag "song[genre]" %>
+</div>
+
+<%= submit_tag "Create Song" %>
+<% end %>
